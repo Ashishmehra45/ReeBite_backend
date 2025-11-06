@@ -6,16 +6,10 @@ const foodpartnerRoutes = require('./routes/food-partner.routes')
 const cookieParser = require('cookie-parser')
 app.use(cookieParser())
 const cors = require('cors')
-
-
 app.use(cors({
-  origin: [
-    "http://localhost:5173", // local frontend
-    "https://ree-bite-frontend-updated-bcne-8xgiu8d9e.vercel.app" // deployed frontend
-  ],
+  origin: "https://ree-bite-frontend-updated.vercel.app",
   credentials: true
 }));
-
 
 
 
