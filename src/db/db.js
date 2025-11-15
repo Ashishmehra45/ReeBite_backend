@@ -1,17 +1,16 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+const connectDB = () => {
+  mongoose
+    .connect(process.env.MONGO_URI)
+    .then((conn) => {
+      console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
+    })
+    .catch((err) => {
+      console.error(`❌ MongoDB Connection Error: ${err.message}`);
+      process.exit(1); // DB fail → server band
     });
-    console.log('✅ MongoDB is connected');
-  } catch (err) {
-    console.error('❌ MongoDB connection error:', err);
-    process.exit(1); // agar DB connect nahi hoti to app ko stop kar do
-  }
 };
 
 module.exports = connectDB;
